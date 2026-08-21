@@ -1,0 +1,2 @@
+- [x] Add “Created By: Dr. Vicki Bealman” to the Python Path home page.
+- [x] Verify the creator credit is visible and preserves the responsive layout.

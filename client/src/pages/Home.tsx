@@ -317,7 +317,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="border-t border-[#d8cdbb] bg-[#fffdf7] px-5 py-7 sm:px-8 lg:px-12"><div className="mx-auto flex max-w-[1500px] flex-col gap-3 text-sm text-[#59616d] sm:flex-row sm:items-center sm:justify-between"><p className="font-semibold text-[#17243a]">Python Path <span className="font-display italic">— make the next step visible.</span></p><p>Progress is saved in this browser.</p></div></footer>
+      <footer className="border-t border-[#d8cdbb] bg-[#fffdf7] px-5 py-7 sm:px-8 lg:px-12"><div className="mx-auto flex max-w-[1500px] flex-col gap-3 text-sm text-[#59616d] sm:flex-row sm:items-center sm:justify-between"><p className="font-semibold text-[#17243a]">Python Path <span className="font-display italic">— make the next step visible.</span></p><div className="flex flex-col gap-1 text-left sm:text-right"><p className="font-mono-guide text-[10px] font-semibold tracking-[0.12em] text-[#b94331]">CREATED BY: DR. VICKI BEALMAN</p><p>Progress is saved in this browser.</p></div></div></footer>
 
     </div>
   );
