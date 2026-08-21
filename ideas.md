@@ -80,3 +80,9 @@ The mark is a looping, two-segment route line that creates a simplified Python-l
 ### Signature Brand Color
 
 **Signal Coral — `#F2634A`**
+
+## Style Decisions
+
+- Python Path is a warm exam-prep code notebook, combining cream paper, dark navy code labs, coral action accents, and a recurring route/path line motif.
+- Major teaching statements use editorial serif typography, while interface and supporting text use a clean grotesque; hierarchy comes from scale, weight, and layout rather than competing colors.
+- The voice is precise, coaching, and exam-focused, favoring verbs such as “trace,” “test,” “explain,” “spot,” and “prove.”

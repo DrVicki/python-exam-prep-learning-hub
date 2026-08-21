@@ -1,2 +1,10 @@
 - [x] Add “Created By: Dr. Vicki Bealman” to the Python Path home page.
 - [x] Verify the creator credit is visible and preserves the responsive layout.
+- [x] Add the complete beginner Python lesson material from the guide to the site.
+- [x] Add all six guide visualizations to their matching lesson sections.
+- [x] Add guided practice activities and browser-editor links for each lesson.
+- [x] Add the full final practice exam and answer-key experience.
+- [ ] Verify content coverage and responsive usability across the expanded learning path.
+- [x] Align all Field Guide cards with the nine Complete Study Guide lessons.
+- [x] Link each Field Guide card directly to its matching full guide section.
+- [x] Verify Field Guide lesson navigation on desktop and mobile.

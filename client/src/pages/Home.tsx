@@ -18,6 +18,7 @@ import {
   Terminal,
   Trophy,
 } from "lucide-react";
+import { CompleteGuide } from "@/components/CompleteGuide";
 
 const EDITOR_URL = "https://coddy.tech/embed?editorLang=python";
 const HERO_IMAGE = "/manus-storage/python-path-hero_6bf96d7d.png";
@@ -37,12 +38,15 @@ type Lesson = {
 };
 
 const lessons: Lesson[] = [
-  { id: "foundations", number: "01", title: "Foundations", eyebrow: "Print · variables · types", description: "Make Python say something useful, then give your data a name.", icon: Braces, tint: "bg-[#e7edf0]", duration: "12 min" },
-  { id: "decisions", number: "02", title: "Decisions", eyebrow: "if · elif · else", description: "Teach your program how to choose its next move.", icon: Lightbulb, tint: "bg-[#fce2dc]", duration: "15 min" },
-  { id: "loops", number: "03", title: "Loops", eyebrow: "for · while · range", description: "Repeat a pattern precisely, without repeating yourself.", icon: RotateCcw, tint: "bg-[#e1eee6]", duration: "18 min" },
-  { id: "collections", number: "04", title: "Collections", eyebrow: "lists · dictionaries", description: "Keep related ideas together and retrieve what matters.", icon: List, tint: "bg-[#f7e8c9]", duration: "20 min" },
-  { id: "functions", number: "05", title: "Functions", eyebrow: "def · return", description: "Package a useful idea so you can use it again.", icon: Code2, tint: "bg-[#e5e6f6]", duration: "16 min" },
-  { id: "exam", number: "06", title: "Exam sprint", eyebrow: "trace · test · explain", description: "Combine the essentials in a focused final review.", icon: Trophy, tint: "bg-[#e1eee6]", duration: "25 min" },
+  { id: "mindset", number: "01", title: "Python mindset", eyebrow: "instructions · data · decisions", description: "Read code as a clear sequence of instructions.", icon: Braces, tint: "bg-[#e7edf0]", duration: "10 min" },
+  { id: "variables", number: "02", title: "Variables, types & arithmetic", eyebrow: "store · convert · calculate", description: "Name values, work with types, and calculate correctly.", icon: Code2, tint: "bg-[#fce2dc]", duration: "16 min" },
+  { id: "strings", number: "03", title: "Strings, input & output", eyebrow: "index · format · clean text", description: "Use text, input, and formatted output with confidence.", icon: List, tint: "bg-[#f7e8c9]", duration: "14 min" },
+  { id: "decisions-full", number: "04", title: "Decisions", eyebrow: "if · elif · else", description: "Teach your program how to choose its next move.", icon: Lightbulb, tint: "bg-[#e5e6f6]", duration: "15 min" },
+  { id: "loops-full", number: "05", title: "Loops", eyebrow: "for · while · range", description: "Repeat a pattern precisely, without repeating yourself.", icon: RotateCcw, tint: "bg-[#e1eee6]", duration: "18 min" },
+  { id: "collections-full", number: "06", title: "Collections", eyebrow: "lists · dictionaries · sets", description: "Keep related data together and retrieve what matters.", icon: List, tint: "bg-[#f7e8c9]", duration: "20 min" },
+  { id: "functions-full", number: "07", title: "Functions", eyebrow: "def · parameters · return", description: "Package a useful job so you can test and reuse it.", icon: Code2, tint: "bg-[#e5e6f6]", duration: "16 min" },
+  { id: "debugging", number: "08", title: "Debugging", eyebrow: "syntax errors · exceptions", description: "Turn an error message into a practical clue.", icon: ClipboardCheck, tint: "bg-[#fce2dc]", duration: "14 min" },
+  { id: "project", number: "09", title: "Mini-project", eyebrow: "exam score analyzer", description: "Combine the core skills in one exam-style program.", icon: Trophy, tint: "bg-[#e1eee6]", duration: "25 min" },
 ];
 
 const codeExample = `# Your first tiny Python program\nname = input("What is your name? ")\nscore = 84\n\nif score >= 70:\n    print(f"Nice work, {name}. You passed!")\nelse:\n    print(f"Keep practicing, {name}.")`;
@@ -61,78 +65,15 @@ type LessonContent = {
 };
 
 const lessonContent: Record<string, LessonContent> = {
-  foundations: {
-    headline: "Start with data that has a",
-    emphasis: "clear name.",
-    summary: "Variables let you store a value, retrieve it later, and change it when the program needs to respond. Think of each one as a labeled container on your study desk.",
-    tags: ["STRINGS", "INTEGERS", "BOOLEANS", "INPUT"],
-    code: codeExample,
-    hint: "Inputs arrive as text. Convert them with int() before doing number math.",
-    prompt: 'What will print: print("3 + 4") ?',
-    answer: "It prints the text 3 + 4, not 7. Quotation marks tell Python to treat those characters as a string.",
-    companionPrompt: "When would you write int(input()) instead of input()?",
-    companionAnswer: "Use int(input()) when you need a whole number for arithmetic or a numeric comparison. Plain input() always returns text.",
-  },
-  decisions: {
-    headline: "Let your program choose a",
-    emphasis: "useful path.",
-    summary: "Conditions evaluate to True or False. Python checks an if / elif / else ladder from top to bottom and takes the first path whose condition is true.",
-    tags: ["IF", "ELIF", "ELSE", "COMPARISONS"],
-    code: `score = 84\n\nif score >= 90:\n    grade = "A"\nelif score >= 80:\n    grade = "B"\nelse:\n    grade = "Keep practicing"\n\nprint(grade)`,
-    hint: "Order matters: place the most specific or highest threshold first.",
-    prompt: "Why does a score of 84 print B in this program?",
-    answer: "84 is not at least 90, so Python checks the next condition. It is at least 80, so grade becomes B and the remaining branch is skipped.",
-    companionPrompt: "What is the difference between = and ==?",
-    companionAnswer: "Use = to assign a value to a variable. Use == to compare two values and produce True or False.",
-  },
-  loops: {
-    headline: "Repeat a pattern without",
-    emphasis: "repeating yourself.",
-    summary: "A for loop moves through a sequence or range one item at a time. An accumulator gives you a reliable way to add, count, or build a result as the loop runs.",
-    tags: ["FOR", "RANGE", "WHILE", "ACCUMULATOR"],
-    code: `total = 0\n\nfor number in range(1, 5):\n    total = total + number\n\nprint(total)`,
-    hint: "range(1, 5) includes 1, 2, 3, and 4. The final stop value is not included.",
-    prompt: "What value does total hold at the end of this loop?",
-    answer: "10. Follow the accumulator: 0 → 1 → 3 → 6 → 10.",
-    companionPrompt: "When should you use a while loop?",
-    companionAnswer: "Use while when you want to repeat as long as a condition remains true and the number of repetitions is not known in advance.",
-  },
-  collections: {
-    headline: "Keep related values in one",
-    emphasis: "useful place.",
-    summary: "Lists hold ordered values that can change. Dictionaries connect a meaningful key to a value. Choose the collection that matches the relationship in the problem.",
-    tags: ["LISTS", "INDEXING", "DICTIONARIES", "APPEND"],
-    code: `scores = [88, 91, 76]\nscores.append(95)\n\nprint(scores[0])\nprint(len(scores))`,
-    hint: "List indexes start at 0, so scores[0] selects the first score.",
-    prompt: "What is printed by scores[0] after this code runs?",
-    answer: "88. append(95) changes the list at the end, but the item at index 0 remains the first value, 88.",
-    companionPrompt: "When is a dictionary more useful than a list?",
-    companionAnswer: "Use a dictionary when you want to retrieve a value by a label, such as student[\"score\"], rather than by a numeric position.",
-  },
-  functions: {
-    headline: "Bundle a useful job, then",
-    emphasis: "use it again.",
-    summary: "Functions help you name a task, pass in the information it needs, and return a result. They make longer exam programs easier to read and test.",
-    tags: ["DEF", "PARAMETERS", "RETURN", "ARGUMENTS"],
-    code: `def calculate_total(price, quantity):\n    total = price * quantity\n    return total\n\nbill = calculate_total(12, 4)\nprint(bill)`,
-    hint: "print displays a value. return sends a value back to the line that called the function.",
-    prompt: "What value is stored in bill?",
-    answer: "48. The call calculate_total(12, 4) runs the function with price = 12 and quantity = 4, then returns 12 × 4.",
-    companionPrompt: "What is the difference between a parameter and an argument?",
-    companionAnswer: "A parameter is the placeholder in a function definition, such as price. An argument is the actual value supplied when calling it, such as 12.",
-  },
-  exam: {
-    headline: "Turn a prompt into a calm,",
-    emphasis: "correct solution.",
-    summary: "Use the same exam routine for every program: identify the input, write the process, check the output, and test a normal case plus an edge case before you submit.",
-    tags: ["TRACE", "TEST", "DEBUG", "EXPLAIN"],
-    code: `number = int(input("Whole number: "))\n\nif number % 2 == 0:\n    print("Even")\nelse:\n    print("Odd")`,
-    hint: "The % operator gives the remainder. A remainder of 0 means the number divides evenly by 2.",
-    prompt: "Why does the condition use number % 2 == 0?",
-    answer: "It checks whether division by 2 leaves a remainder. Even numbers leave no remainder, so the result is 0.",
-    companionPrompt: "What should you check before submitting code?",
-    companionAnswer: "Check variable spelling, colons, indentation, quotation marks, and at least one normal and edge-case test.",
-  },
+  mindset: { headline: "Read each program as a", emphasis: "clear sequence.", summary: "Python runs instructions in order unless a decision, loop, function, or error changes the path. Indentation shows which instructions belong together.", tags: ["PRINT", "STRINGS", "INDENTATION", "FLOW"], code: `print("Welcome to Python!")\nprint("One step at a time.")`, hint: "Quotation marks make text. Remove them only when you want Python to calculate an expression.", prompt: 'Why does print("3 + 4") not calculate a total?', answer: "The quotation marks make 3 + 4 a string of text rather than a mathematical expression.", companionPrompt: "What does indentation show in Python?", companionAnswer: "It shows which lines belong inside a decision, loop, or function." },
+  variables: { headline: "Store a value under a", emphasis: "useful name.", summary: "Variables let you store data, retrieve it later, convert user input, and calculate a new result. The type of a value determines what Python can do with it.", tags: ["INT", "FLOAT", "STR", "BOOL"], code: `price = 18\nquantity = 3\nsubtotal = price * quantity\nprint(subtotal)`, hint: "input() always produces text. Use int() or float() before doing arithmetic with numeric input.", prompt: "What is the difference between = and ==?", answer: "= assigns or stores a value. == compares two values and produces True or False.", companionPrompt: "What type is 3.5?", companionAnswer: "A float, because it is a number with a decimal point." },
+  strings: { headline: "Make text precise, readable, and", emphasis: "ready to use.", summary: "Strings are sequences of characters. Indexes begin at 0, negative indexes count back from the end, and f-strings make it easy to insert variable values into a message.", tags: ["INDEX", "F-STRING", "INPUT", "METHODS"], code: `word = "Python"\nprint(word[0])\nprint(word[-1])\nprint(len(word))`, hint: "Use f before quotation marks and wrap variable names in curly braces to create an f-string.", prompt: 'What does word[2] produce when word = "exam"?', answer: "a. The indexes are 0 → e, 1 → x, 2 → a, and 3 → m.", companionPrompt: "What does word[-1] select?", companionAnswer: "The final character in the string." },
+  "decisions-full": { headline: "Let your program choose the", emphasis: "right path.", summary: "Conditions evaluate to True or False. Python tests an if / elif / else sequence from top to bottom and stops at the first true condition.", tags: ["IF", "ELIF", "ELSE", "AND"], code: `score = 84\n\nif score >= 90:\n    grade = "A"\nelif score >= 80:\n    grade = "B"\nelse:\n    grade = "Keep practicing"\n\nprint(grade)`, hint: "Order matters. Put the highest or most specific threshold first.", prompt: "Why does a score of 84 receive B?", answer: "84 is not at least 90, but it is at least 80, so the second branch runs and the remaining branch is skipped.", companionPrompt: "When is and true?", companionAnswer: "Only when both conditions connected by and are true." },
+  "loops-full": { headline: "Repeat the right pattern without", emphasis: "repeating yourself.", summary: "Use for loops with a sequence or known range. Use while when a condition should keep the program running. Trace an accumulator after every loop pass.", tags: ["FOR", "WHILE", "RANGE", "TOTAL"], code: `total = 0\n\nfor number in range(1, 5):\n    total = total + number\n\nprint(total)`, hint: "range(1, 5) includes 1, 2, 3, and 4. The stop value is excluded.", prompt: "What total remains after this loop?", answer: "10. Trace the accumulator: 0 → 1 → 3 → 6 → 10.", companionPrompt: "What does continue do?", companionAnswer: "It skips the rest of the current loop pass and begins the next one." },
+  "collections-full": { headline: "Keep related values in a", emphasis: "useful place.", summary: "Lists keep ordered values that can change, dictionaries connect a label to a value, tuples stay fixed, and sets hold unique values.", tags: ["LISTS", "DICTS", "INDEX", "APPEND"], code: `scores = [88, 91, 76]\nscores.append(95)\nprint(scores[0])`, hint: "The first list item is index 0. append() adds at the end; pop() removes and returns an item.", prompt: "What does scores[0] print after append(95)?", answer: "88. Adding an item at the end does not change the first item.", companionPrompt: "When is a dictionary useful?", companionAnswer: "When you want to look up a value by a meaningful label, such as student[\"score\"]." },
+  "functions-full": { headline: "Bundle a useful job, then", emphasis: "use it again.", summary: "Functions make a program easier to read, test, and reuse. Parameters accept inputs, arguments provide actual values, and return sends a result back to the calling line.", tags: ["DEF", "PARAMETERS", "RETURN", "ARGUMENTS"], code: `def calculate_total(price, quantity):\n    return price * quantity\n\nbill = calculate_total(12, 4)\nprint(bill)`, hint: "return sends a value back for later use. print only displays a value.", prompt: "What value is stored in bill?", answer: "48. The function receives 12 and 4, multiplies them, and returns the result.", companionPrompt: "What is a parameter?", companionAnswer: "A placeholder inside a function definition that receives an input value." },
+  debugging: { headline: "Turn an error message into a", emphasis: "useful clue.", summary: "Syntax errors prevent Python from reading the program. Exceptions occur while valid-looking code runs. Read the final traceback line to identify the error type.", tags: ["SYNTAX", "TYPE", "VALUE", "TRACEBACK"], code: `age = input("Age: ")\nprint(age + 1)\n\n# Repair\nage = int(input("Age: "))\nprint(age + 1)`, hint: "Catch the error you expect, such as ValueError, rather than using an overly broad exception handler.", prompt: "Why does age + 1 fail after input()?", answer: "input() returns a string, but 1 is an integer. Convert the input with int() before adding.", companionPrompt: "What does a SyntaxError often mean?", companionAnswer: "A colon, quote, parenthesis, or indentation is missing or misplaced." },
+  project: { headline: "Combine the core skills in one", emphasis: "exam-style program.", summary: "The score analyzer uses a list, input conversion, loops, an accumulator, a function, decisions, and formatted output—the same building blocks used repeatedly on beginner exams.", tags: ["LIST", "LOOP", "FUNCTION", "AVERAGE"], code: `scores = [88, 91, 76]\ntotal = 0\nfor score in scores:\n    total = total + score\n\naverage = total / len(scores)\nprint(f"Average: \${average:.1f}")`, hint: "Plan the program as input → process → output. Then test it with ordinary and edge-case scores.", prompt: "Which expression calculates the average?", answer: "total / len(scores). It divides the accumulated total by the number of scores.", companionPrompt: "What extension should you try next?", companionAnswer: "Find and report the highest score by comparing each score to a current highest value." },
 };
 
 function RouteButton({ lesson, complete, onClick }: { lesson: Lesson; complete: boolean; onClick: () => void }) {
@@ -177,7 +118,7 @@ function Checkpoint({ prompt, answer }: { prompt: string; answer: string }) {
 export default function Home() {
   const [completed, setCompleted] = useState<Record<string, boolean>>({});
   const [copied, setCopied] = useState(false);
-  const [activeLesson, setActiveLesson] = useState("foundations");
+  const [activeLesson, setActiveLesson] = useState("mindset");
 
   useEffect(() => {
     const saved = window.localStorage.getItem("python-path-progress");
@@ -196,7 +137,7 @@ export default function Home() {
   const jumpTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   const openLesson = (id: string) => {
     setActiveLesson(id);
-    window.setTimeout(() => jumpTo(id === "exam" ? "review" : "focus"), 0);
+    window.setTimeout(() => jumpTo(`guide-${id}`), 0);
   };
   const toggleComplete = (id: string) => setCompleted((current) => ({ ...current, [id]: !current[id] }));
   const copyCode = async () => {
@@ -211,7 +152,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-[1500px] items-center justify-between gap-4 px-5 py-3 lg:px-8">
           <a href="#top" className="flex items-center gap-3" aria-label="Python Path home">
             <img src={LOGO_IMAGE} alt="Python Path" className="h-10 w-10 object-contain" />
-            <span className="text-lg font-bold tracking-tight">Python <span className="font-display italic font-semibold">Path</span></span>
+            <span className="flex flex-col leading-none"><span className="text-lg font-bold tracking-tight">Python <span className="font-display italic font-semibold">Path</span></span><span className="mt-1 hidden font-mono-guide text-[8px] font-semibold tracking-[0.16em] text-[#b94331] lg:block">EXAM PREP FIELD GUIDE</span></span>
           </a>
           <div className="hidden items-center gap-6 md:flex">
             <a href="#lessons" className="text-sm font-semibold text-[#58616e] transition hover:text-[#b94331]">Lessons</a>
@@ -227,7 +168,7 @@ export default function Home() {
           <div className="sticky top-[68px] h-[calc(100vh-68px)] overflow-auto px-5 py-8">
             <div className="mb-7 flex items-center justify-between">
               <p className="font-mono-guide text-[10px] font-semibold tracking-[0.15em] text-[#78808a]">YOUR ROUTE</p>
-              <span className="rounded-full bg-[#fce2dc] px-2 py-1 text-[10px] font-bold text-[#9a2f23]">{completeCount}/6</span>
+              <span className="rounded-full bg-[#fce2dc] px-2 py-1 text-[10px] font-bold text-[#9a2f23]">{completeCount}/{lessons.length}</span>
             </div>
             <div className="relative">
               <div className="route-pulse absolute bottom-5 left-[26px] top-5 border-l-2 border-dashed border-[#f2634a]/50" />
@@ -252,19 +193,19 @@ export default function Home() {
               <h1 className="font-display mt-6 text-balance text-5xl font-semibold leading-[0.95] tracking-[-0.045em] text-[#17243a] sm:text-6xl lg:text-7xl">Turn Python concepts into <em className="text-[#b94331]">exam instincts.</em></h1>
               <p className="mt-6 max-w-xl text-lg leading-7 text-[#4f5966]">A hands-on study map for building confidence with variables, decisions, loops, collections, functions, and code tracing.</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <button onClick={() => openLesson("foundations")} className="inline-flex items-center gap-2 rounded-full bg-[#f2634a] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#b94331] active:scale-[0.97]">Start route <ArrowRight size={17} /></button>
+                <button onClick={() => openLesson("mindset")} className="inline-flex items-center gap-2 rounded-full bg-[#f2634a] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#b94331] active:scale-[0.97]">Start route <ArrowRight size={17} /></button>
                 <a href={EDITOR_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-[#d8cdbb] bg-[#fffdf7]/80 px-5 py-3 text-sm font-bold text-[#17243a] transition hover:border-[#17243a] active:scale-[0.97]"><Play size={16} fill="currentColor" /> Practice in browser</a>
               </div>
             </div>
             <div className="relative mt-12 grid max-w-xl grid-cols-3 gap-3 sm:gap-5">
-              {[['6', 'core modules'], ['4', 'exam drills'], ['1', 'guided project']].map(([value, label]) => <div key={label} className="border-l-2 border-[#f2634a] pl-3"><p className="font-display text-3xl font-semibold">{value}</p><p className="mt-0.5 text-xs font-semibold text-[#59616d]">{label}</p></div>)}
+              {[['9', 'guide lessons'], ['10', 'exam questions'], ['1', 'guided project']].map(([value, label]) => <div key={label} className="border-l-2 border-[#f2634a] pl-3"><p className="font-display text-3xl font-semibold">{value}</p><p className="mt-0.5 text-xs font-semibold text-[#59616d]">{label}</p></div>)}
             </div>
           </section>
 
           <section id="lessons" className="scroll-mt-24 px-5 py-12 sm:px-8 lg:px-12">
             <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-              <div><p className="font-mono-guide text-[10px] font-semibold tracking-[0.14em] text-[#9a5a4d]">THE FIELD GUIDE</p><h2 className="font-display mt-2 text-4xl font-semibold tracking-[-0.035em]">Follow the path. <em>Make it yours.</em></h2></div>
-              <div className="rounded-full border border-[#d8cdbb] bg-[#fffdf7] px-4 py-2 text-sm font-semibold text-[#59616d]"><span className="text-[#b94331]">{completeCount}</span> of 6 lessons complete</div>
+              <div><p className="font-mono-guide text-[10px] font-semibold tracking-[0.14em] text-[#9a5a4d]">THE FIELD GUIDE · LINKED TO THE COMPLETE STUDY GUIDE</p><h2 className="font-display mt-2 text-4xl font-semibold tracking-[-0.035em]">Follow the path. <em>Make it yours.</em></h2><p className="mt-2 text-sm text-[#59616d]">Each route card opens its matching full lesson, practice activity, visual, and knowledge check below.</p></div>
+              <div className="rounded-full border border-[#d8cdbb] bg-[#fffdf7] px-4 py-2 text-sm font-semibold text-[#59616d]"><span className="text-[#b94331]">{completeCount}</span> of {lessons.length} lessons complete</div>
             </div>
 
             <div className="mt-9 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -277,7 +218,7 @@ export default function Home() {
                   <p className="font-mono-guide mt-5 text-[10px] font-semibold tracking-[0.12em] text-[#9a5a4d]">{lesson.eyebrow.toUpperCase()}</p>
                   <h3 className="font-display mt-1 text-3xl font-semibold tracking-[-0.04em]">{lesson.title}</h3>
                   <p className="mt-2 max-w-[30ch] text-sm leading-5 text-[#4f5966]">{lesson.description}</p>
-                  <div className="mt-5 flex items-center justify-between"><button onClick={() => openLesson(lesson.id)} className="inline-flex items-center gap-1.5 text-sm font-bold text-[#17243a] underline decoration-[#17243a]/30 underline-offset-4 hover:text-[#b94331]">Explore <ArrowRight size={15} /></button><button onClick={() => toggleComplete(lesson.id)} className={`grid h-9 w-9 place-items-center rounded-full transition active:scale-[0.97] ${done ? "bg-[#4d7c61] text-white" : "border border-[#17243a]/20 bg-[#fffdf7]/70 text-[#17243a] hover:border-[#4d7c61] hover:text-[#4d7c61]"}`} aria-label={`Mark ${lesson.title} as ${done ? "not complete" : "complete"}`}>{done ? <Check size={17} strokeWidth={3} /> : <Circle size={16} />}</button></div>
+                  <div className="mt-5 flex items-center justify-between"><button onClick={() => openLesson(lesson.id)} className="inline-flex items-center gap-1.5 text-sm font-bold text-[#17243a] underline decoration-[#17243a]/30 underline-offset-4 hover:text-[#b94331]">Open full guide <ArrowRight size={15} /></button><button onClick={() => toggleComplete(lesson.id)} className={`grid h-9 w-9 place-items-center rounded-full transition active:scale-[0.97] ${done ? "bg-[#4d7c61] text-white" : "border border-[#17243a]/20 bg-[#fffdf7]/70 text-[#17243a] hover:border-[#4d7c61] hover:text-[#4d7c61]"}`} aria-label={`Mark ${lesson.title} as ${done ? "not complete" : "complete"}`}>{done ? <Check size={17} strokeWidth={3} /> : <Circle size={16} />}</button></div>
                 </article>;
               })}
             </div>
@@ -300,6 +241,8 @@ export default function Home() {
             </div>
             <div className="mt-7 grid gap-4 md:grid-cols-2"><Checkpoint prompt={currentLesson.prompt} answer={currentLesson.answer} /><Checkpoint prompt={currentLesson.companionPrompt} answer={currentLesson.companionAnswer} /></div>
           </section>
+
+          <CompleteGuide editorUrl={EDITOR_URL} />
 
           <section className="grid gap-0 border-b border-[#d8cdbb] bg-[#f4eedf] xl:grid-cols-[0.92fr_1.08fr]">
             <div className="p-5 sm:p-8 lg:p-12"><img src={CONCEPT_IMAGE} alt="Illustrated Python concepts field guide" className="h-full min-h-[340px] w-full rounded-[1.5rem] object-cover paper-shadow" /></div>
