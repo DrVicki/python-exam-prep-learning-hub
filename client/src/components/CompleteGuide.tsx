@@ -21,12 +21,12 @@ import {
 } from "lucide-react";
 
 const visuals = {
-  programCycle: "/manus-storage/python_program_cycle_cd6fa4c7.png",
-  stringIndexing: "/manus-storage/string_indexing_19fa596d.png",
-  decisionFlow: "/manus-storage/decision_flow_34c44253.png",
-  loopTrace: "/manus-storage/for_loop_trace_74b6198c.png",
-  functionFlow: "/manus-storage/function_data_flow_24d9c7ba.png",
-  examFlow: "/manus-storage/exam_problem_solving_338a813b.png",
+  programCycle: "https://pyexamhub-6uz2bmvu.manus.space/manus-storage/python_program_cycle_cd6fa4c7.png",
+  stringIndexing: "https://pyexamhub-6uz2bmvu.manus.space/manus-storage/string_indexing_19fa596d.png",
+  decisionFlow: "https://pyexamhub-6uz2bmvu.manus.space/manus-storage/decision_flow_34c44253.png",
+  loopTrace: "https://pyexamhub-6uz2bmvu.manus.space/manus-storage/for_loop_trace_74b6198c.png",
+  functionFlow: "https://pyexamhub-6uz2bmvu.manus.space/manus-storage/function_data_flow_24d9c7ba.png",
+  examFlow: "https://pyexamhub-6uz2bmvu.manus.space/manus-storage/exam_problem_solving_338a813b.png",
 };
 
 type Example = { title: string; code: string; result?: string };

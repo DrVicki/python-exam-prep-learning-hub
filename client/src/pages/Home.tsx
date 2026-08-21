@@ -21,10 +21,11 @@ import {
 import { CompleteGuide } from "@/components/CompleteGuide";
 
 const EDITOR_URL = "https://coddy.tech/embed?editorLang=python";
-const HERO_IMAGE = "/manus-storage/python-path-hero_6bf96d7d.png";
-const CONCEPT_IMAGE = "/manus-storage/python-path-concepts_7e5f6d03.png";
-const PRACTICE_IMAGE = "/manus-storage/python-path-practice_86e8ecfd.png";
-const LOGO_IMAGE = "/manus-storage/python-path-logo_809cf313.png";
+const PUBLIC_ASSET_ORIGIN = "https://pyexamhub-6uz2bmvu.manus.space";
+const HERO_IMAGE = `${PUBLIC_ASSET_ORIGIN}/manus-storage/python-path-hero_6bf96d7d.png`;
+const CONCEPT_IMAGE = `${PUBLIC_ASSET_ORIGIN}/manus-storage/python-path-concepts_7e5f6d03.png`;
+const PRACTICE_IMAGE = `${PUBLIC_ASSET_ORIGIN}/manus-storage/python-path-practice_86e8ecfd.png`;
+const LOGO_IMAGE = `${PUBLIC_ASSET_ORIGIN}/manus-storage/python-path-logo_809cf313.png`;
 
 type Lesson = {
   id: string;

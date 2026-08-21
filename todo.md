@@ -8,3 +8,6 @@
 - [x] Align all Field Guide cards with the nine Complete Study Guide lessons.
 - [x] Link each Field Guide card directly to its matching full guide section.
 - [x] Verify Field Guide lesson navigation on desktop and mobile.
+- [ ] Inspect the GitHub repository, Pages source, and deployment status for the reported 404 error.
+- [ ] Ensure GitHub Pages publishes the production build with a root index.html.
+- [ ] Verify the corrected GitHub Pages URL loads the Python Path website.
